@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6ec402c0-0c13-42b4-8f11-9d8347472e28" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/source.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/source.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android/.gradle/7.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../android/.gradle/7.6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android/.gradle/7.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../android/.gradle/7.6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android/.gradle/7.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../android/.gradle/7.6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android/.gradle/7.6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../android/.gradle/7.6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/../android/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/locale/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/../assets/locale/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Flutter/Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Flutter/Generated.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Flutter/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/app_container.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/app_container.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/configs/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/configs/routes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/account/account.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/account/account.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/discovery/discovery.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/discovery/discovery.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/home/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/home/home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/home/home_sliver_app_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/home/home_sliver_app_bar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/home/home_swiper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/home/home_swiper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/home/search_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/home/search_bar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/screen.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2ZfMJiIwqWUCO816zkvnAZu0POH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "show.migrate.to.gradle.popup": "false"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6ec402c0-0c13-42b4-8f11-9d8347472e28" name="Changes" comment="" />
+      <created>1702808622268</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702808622268</updated>
+    </task>
+    <servers />
+  </component>
+</project>

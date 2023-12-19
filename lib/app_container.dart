@@ -132,10 +132,6 @@ class _AppContainerState extends State<AppContainer> {
         iconData = Icons.location_on_outlined;
         title = 'discovery';
         break;
-      case Routes.wishList:
-        iconData = Icons.bookmark_outline;
-        title = 'wish_list';
-        break;
       case Routes.account:
         iconData = Icons.account_circle_outlined;
         title = 'account';
@@ -178,12 +174,21 @@ class _AppContainerState extends State<AppContainer> {
   ///Build submit button
   Widget? _buildSubmit() {
     if (Application.setting.enableSubmit) {
-      return FloatingActionButton(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        onPressed: _onSubmit,
-        child: const Icon(
-          Icons.add,
-          color: Colors.white,
+      return Padding(
+        padding: EdgeInsets.only(bottom: 80.0,right: 10.0),
+        child: Align(
+          alignment: Alignment.bottomRight,
+          child: FloatingActionButton(
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            onPressed: _onSubmit,
+            child: Padding(
+              padding: EdgeInsets.all(16.0), 
+              child:Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            ),
+          ),
         ),
       );
     }
@@ -201,8 +206,6 @@ class _AppContainerState extends State<AppContainer> {
           children: [
             _buildMenuItem(Routes.home),
             _buildMenuItem(Routes.discovery),
-            const SizedBox(width: 56),
-            _buildMenuItem(Routes.wishList),
             _buildMenuItem(Routes.account),
           ],
         ),
@@ -216,7 +219,6 @@ class _AppContainerState extends State<AppContainer> {
         children: [
           _buildMenuItem(Routes.home),
           _buildMenuItem(Routes.discovery),
-          _buildMenuItem(Routes.wishList),
           _buildMenuItem(Routes.account),
         ],
       ),
@@ -233,7 +235,7 @@ class _AppContainerState extends State<AppContainer> {
         },
         child: IndexedStack(
           index: _exportIndexed(_selected),
-          children: const <Widget>[Home(), Discovery(), WishList(), Account()],
+          children: const <Widget>[Home(), Discovery(), Account()],
         ),
       ),
       bottomNavigationBar: _buildBottomMenu(),
