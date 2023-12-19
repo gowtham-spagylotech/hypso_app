@@ -1,0 +1,83 @@
+[
+    {
+      "id": 1,
+      "name": "Category 1",
+      "count": 10,
+      "image": "path/to/image1.jpg",
+      "icon": "icon1",
+      "color": "#abcdef",
+      "type": "category",
+      "hasChild": false
+    },
+    {
+      "id": 2,
+      "name": "Category 2",
+      "count": 15,
+      "image": "path/to/image2.jpg",
+      "icon": "icon2",
+      "color": "#123456",
+      "type": "category",
+      "hasChild": true
+    },
+    {
+      "id": 3,
+      "name": "Category 3",
+      "count": 20,
+      "image": "path/to/image3.jpg",
+      "icon": "icon3",
+      "color": "#789012",
+      "type": "category",
+      "hasChild": false
+    },
+    {
+      "id": 4,
+      "name": "Category 4",
+      "count": 12,
+      "image": "path/to/image4.jpg",
+      "icon": "icon4",
+      "color": "#345678",
+      "type": "category",
+      "hasChild": true
+    },
+    {
+      "id": 5,
+      "name": "Category 5",
+      "count": 8,
+      "image": "path/to/image5.jpg",
+      "icon": "icon5",
+      "color": "#901234",
+      "type": "category",
+      "hasChild": false
+    },
+    {
+      "id": 6,
+      "name": "Category 6",
+      "count": 5,
+      "image": "path/to/image6.jpg",
+      "icon": "icon6",
+      "color": "#567890",
+      "type": "category",
+      "hasChild": true
+    },
+    {
+      "id": 7,
+      "name": "Category 7",
+      "count": 18,
+      "image": "path/to/image7.jpg",
+      "icon": "icon7",
+      "color": "#012345",
+      "type": "category",
+      "hasChild": false
+    },
+    {
+      "id": 8,
+      "name": "Category 8",
+      "count": 22,
+      "image": "path/to/image8.jpg",
+      "icon": "icon8",
+      "color": "#678901",
+      "type": "category",
+      "hasChild": true
+    }
+  ]
+

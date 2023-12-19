@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
-import 'package:listar_flutter_pro/widgets/widget.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/utils/utils.dart';
+import 'package:hypso/widgets/widget.dart';
 
 class AppDiscoveryItem extends StatelessWidget {
   final DiscoveryModel? item;

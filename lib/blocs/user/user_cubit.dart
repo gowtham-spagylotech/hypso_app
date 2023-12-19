@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/repository/repository.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/repository/repository.dart';
 
 class UserCubit extends Cubit<UserModel?> {
   UserCubit() : super(null);

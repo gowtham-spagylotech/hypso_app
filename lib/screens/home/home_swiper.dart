@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:listar_flutter_pro/widgets/widget.dart';
+import 'package:hypso/widgets/widget.dart';
 
 class HomeSwipe extends StatelessWidget {
   final double height;

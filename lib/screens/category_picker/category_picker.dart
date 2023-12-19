@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
-import 'package:listar_flutter_pro/widgets/app_button.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/utils/utils.dart';
+import 'package:hypso/widgets/app_button.dart';
 
 class CategoryPicker extends StatefulWidget {
   final PickerModel picker;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:listar_flutter_pro/configs/config.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
+import 'package:hypso/configs/config.dart';
+import 'package:hypso/utils/utils.dart';
 
 class Translate {
   final Locale locale;

@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:listar_flutter_pro/repository/repository.dart';
+import 'package:hypso/repository/repository.dart';
 
 import 'cubit.dart';
 

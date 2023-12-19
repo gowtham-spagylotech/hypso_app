@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/utils/utils.dart';
 
 enum CategoryType { category, location, feature }
 

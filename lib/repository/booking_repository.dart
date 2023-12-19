@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:listar_flutter_pro/api/api.dart';
-import 'package:listar_flutter_pro/blocs/bloc.dart';
-import 'package:listar_flutter_pro/models/model.dart';
+import 'package:hypso/api/api.dart';
+import 'package:hypso/blocs/bloc.dart';
+import 'package:hypso/models/model.dart';
 
 class BookingRepository {
   static Future<List?> loadBookingForm(id) async {

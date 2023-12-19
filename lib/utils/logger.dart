@@ -1,6 +1,6 @@
 import 'dart:developer' as developer;
 
-import 'package:listar_flutter_pro/configs/application.dart';
+import 'package:hypso/configs/application.dart';
 
 class UtilLogger {
   static log([String tag = "LOGGER", dynamic msg]) {

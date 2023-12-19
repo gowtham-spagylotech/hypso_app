@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:listar_flutter_pro/blocs/bloc.dart';
-import 'package:listar_flutter_pro/configs/config.dart';
-import 'package:listar_flutter_pro/models/model.dart';
+import 'package:hypso/blocs/bloc.dart';
+import 'package:hypso/configs/config.dart';
+import 'package:hypso/models/model.dart';
 
 class ThemeState {
   final ThemeModel theme;

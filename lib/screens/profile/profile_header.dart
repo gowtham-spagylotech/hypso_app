@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
-import 'package:listar_flutter_pro/widgets/app_placeholder.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/utils/utils.dart';
+import 'package:hypso/widgets/app_placeholder.dart';
 
 class ProfileHeader extends SliverPersistentHeaderDelegate {
   final double height;

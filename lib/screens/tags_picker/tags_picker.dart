@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:listar_flutter_pro/repository/repository.dart';
-import 'package:listar_flutter_pro/utils/translate.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
-import 'package:listar_flutter_pro/widgets/widget.dart';
+import 'package:hypso/repository/repository.dart';
+import 'package:hypso/utils/translate.dart';
+import 'package:hypso/utils/utils.dart';
+import 'package:hypso/widgets/widget.dart';
 
 class TagsPicker extends StatefulWidget {
   final List<String> selected;

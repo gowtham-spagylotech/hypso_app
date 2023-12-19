@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:listar_flutter_pro/api/http_manager.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
+import 'package:hypso/api/http_manager.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/utils/utils.dart';
 
 class Api {
   static final httpManager = HTTPManager();

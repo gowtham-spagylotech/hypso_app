@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:listar_flutter_pro/utils/logger.dart';
+import 'package:hypso/utils/logger.dart';
 
 class UtilIcon {
   static const Map<String, IconData> faIconNameMapping = {

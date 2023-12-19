@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:listar_flutter_pro/configs/config.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/widgets/app_placeholder.dart';
+import 'package:hypso/configs/config.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/widgets/app_placeholder.dart';
 
 enum UserViewType { basic, information, qrcode }
 

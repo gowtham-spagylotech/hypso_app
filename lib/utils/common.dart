@@ -4,8 +4,8 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/utils/utils.dart';
 
 class Utils {
   static fieldFocusChange(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/screens/screen.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/screens/screen.dart';
 
 class RouteArguments<T> {
   final T? item;

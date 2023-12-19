@@ -35,7 +35,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.huynh.listar_flutter_pro"
+        applicationId "com.huynh.hypso"
         minSdkVersion 21
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
@@ -57,7 +57,7 @@ android {
             signingConfig signingConfigs.release
         }
     }
-    namespace 'com.huynh.listar_flutter_pro'
+    namespace 'com.huynh.hypso'
     lint {
         abortOnError false
         checkReleaseBuilds false

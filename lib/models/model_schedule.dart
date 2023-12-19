@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
+import 'package:hypso/utils/utils.dart';
 
 class ScheduleModel {
   String? view;

@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:listar_flutter_pro/blocs/bloc.dart';
-import 'package:listar_flutter_pro/configs/config.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/screens/home/home_category_item.dart';
-import 'package:listar_flutter_pro/screens/home/home_sliver_app_bar.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
-import 'package:listar_flutter_pro/widgets/widget.dart';
+import 'package:hypso/blocs/bloc.dart';
+import 'package:hypso/configs/config.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/screens/home/home_category_item.dart';
+import 'package:hypso/screens/home/home_sliver_app_bar.dart';
+import 'package:hypso/utils/utils.dart';
+import 'package:hypso/widgets/widget.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -54,23 +54,7 @@ class _HomeState extends State<Home> {
 
   ///On search
   void _onSearch() {
-    Navigator.pushNamed(context, Routes.searchHistory);
-  }
-
-  ///On scan
-  void _onScan() async {
-    final result = await Navigator.pushNamed(context, Routes.scanQR);
-    if (result != null) {
-      final deeplink = DeepLinkModel.fromString(result as String);
-      if (deeplink.target.isNotEmpty) {
-        if (!mounted) return;
-        Navigator.pushNamed(
-          context,
-          Routes.deepLink,
-          arguments: deeplink,
-        );
-      }
-    }
+    // Navigator.pushNamed(context, Routes.searchHistory);
   }
 
   ///On select category
@@ -135,80 +119,6 @@ class _HomeState extends State<Home> {
     return Container(
       padding: const EdgeInsets.all(8),
       child: content,
-    );
-  }
-
-  ///Build popular UI
-  Widget _buildLocation(List<CategoryModel>? location) {
-    ///Loading
-    Widget content = ListView.builder(
-      scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      itemBuilder: (context, index) {
-        return const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8),
-          child: AppCategoryItem(
-            type: CategoryView.cardLarge,
-          ),
-        );
-      },
-      itemCount: List.generate(8, (index) => index).length,
-    );
-
-    if (location != null) {
-      content = ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        itemBuilder: (context, index) {
-          final item = location[index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: AppCategoryItem(
-              item: item,
-              type: CategoryView.cardLarge,
-              onPressed: () {
-                _onCategory(item);
-              },
-            ),
-          );
-        },
-        itemCount: location.length,
-      );
-    }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 8),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                Translate.of(context).translate(
-                  'popular_location',
-                ),
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-              Text(
-                Translate.of(context).translate(
-                  'let_find_interesting',
-                ),
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-            ],
-          ),
-        ),
-        Container(
-          height: 180,
-          padding: const EdgeInsets.only(top: 4),
-          child: content,
-        ),
-      ],
     );
   }
 
@@ -280,20 +190,2432 @@ class _HomeState extends State<Home> {
     );
   }
 
+  Map<String, dynamic> homeSwipeData = {
+    "images": [
+      "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1",
+      "https://img.freepik.com/free-photo/full-length-portrait-happy-family_171337-2281.jpg?w=900&t=st=1702967962~exp=1702968562~hmac=73b16dfda6fdbea6c771768547ad04062e2f5bd88642651b19a5531a0460759d",
+      "https://img.freepik.com/free-photo/just-look-there-there-is-exactly-what-we-were-looking_329181-1731.jpg?w=360&t=st=1702967973~exp=1702968573~hmac=024c3c467cb9b47be438eff83a99354823493644f07f9a256efe3b08cff503bd",
+      "https://img.freepik.com/free-photo/happy-beautiful-couple-posing-with-shopping-bags-violet_496169-2215.jpg?w=900&t=st=1702967977~exp=1702968577~hmac=c8a41113b9f812296a82405efcc10f9338e3809294dacfa19f9e5daeeee951c8",
+      "https://img.freepik.com/free-photo/young-female-sitting-shopping-cart_651396-210.jpg?w=360&t=st=1702968027~exp=1702968627~hmac=41114a27b5632dc5043eaebdd20698bdf6969175e3b8b5c0afdca3c62efc1aa9"
+    ]
+  };
+
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> jsonData = [
+      {
+        "id": 1,
+        "name": "Category 1",
+        "count": 10,
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {
+            "url":
+                "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+          }
+        },
+        "icon": "icon1",
+        "color": "#abcdef",
+        "type": "category",
+        "hasChild": false
+      },
+      {
+        "id": 2,
+        "name": "Category 2",
+        "count": 15,
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {
+            "url":
+                "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+          }
+        },
+        "icon": "icon2",
+        "color": "#123456",
+        "type": "category",
+        "hasChild": true
+      },
+      {
+        "id": 3,
+        "name": "Category 3",
+        "count": 20,
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {
+            "url":
+                "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+          }
+        },
+        "icon": "icon3",
+        "color": "#789012",
+        "type": "category",
+        "hasChild": false
+      },
+      {
+        "id": 4,
+        "name": "Category 4",
+        "count": 12,
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {
+            "url":
+                "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+          }
+        },
+        "icon": "icon4",
+        "color": "#345678",
+        "type": "category",
+        "hasChild": true
+      },
+      {
+        "id": 5,
+        "name": "Category 5",
+        "count": 8,
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {
+            "url":
+                "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+          }
+        },
+        "icon": "icon5",
+        "color": "#901234",
+        "type": "category",
+        "hasChild": false
+      },
+      {
+        "id": 6,
+        "name": "Category 6",
+        "count": 5,
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {
+            "url":
+                "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+          }
+        },
+        "icon": "icon6",
+        "color": "#567890",
+        "type": "category",
+        "hasChild": true
+      },
+      {
+        "id": 7,
+        "name": "Category 7",
+        "count": 18,
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {
+            "url":
+                "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+          }
+        },
+        "icon": "icon7",
+        "color": "#012345",
+        "type": "category",
+        "hasChild": false
+      },
+      {
+        "id": 8,
+        "name": "Category 8",
+        "count": 22,
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {
+            "url":
+                "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+          }
+        },
+        "icon": "icon8",
+        "color": "#678901",
+        "type": "category",
+        "hasChild": true
+      }
+    ];
+    
+     List<Map<String, dynamic>> sampleList = [
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  },
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  },
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  },
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  },
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  },
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  },
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  },
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  },
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  },
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  },
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  },
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  },
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  },
+  {
+    "ID": 123,
+    "post_title": "Sample",
+    "image": {
+      "id": 0,
+      "full": {},
+      "thumb": {
+        "url": "https://img.freepik.com/free-photo/woman-casual-white-sweater-sunglasses-red-wall_343596-5382.jpg?w=900&t=st=1702967923~exp=1702968523~hmac=761f01240364321b2ad3d1c5377024c1a4369f5616fb9c016607bd8bdcbe44f1"
+      }
+    },
+    "video_url": "https://www.example.com/sample-video",
+    "category": {
+      "id": 1,
+      "name": "Sample Category"
+    },
+    "createDate": "2023-01-01",
+    "date_establish": "2023-01-01",
+    "rating_avg": 4.5,
+    "rating_count": 100,
+    "post_status": "Published",
+    "wishlist": true,
+    "address": "123 Main Street",
+    "zip_code": "12345",
+    "phone": "123-456-7890",
+    "fax": "123-456-7891",
+    "email": "info@example.com",
+    "website": "https://www.example.com",
+    "post_excerpt": "Product description goes here.",
+    "color": "#00ff00",
+    "icon": "https://www.example.com/icon.png",
+    "tags": [
+      {
+        "id": 2,
+        "name": "Tag1"
+      },
+      {
+        "id": 3,
+        "name": "Tag2"
+      }
+    ],
+    "price": "50.00",
+    "priceMin": "40.00",
+    "priceMax": "60.00",
+    "country": {
+      "id": 4,
+      "name": "Sample Country"
+    },
+    "state": {
+      "id": 5,
+      "name": "Sample State"
+    },
+    "city": {
+      "id": 6,
+      "name": "Sample City"
+    },
+    "author": {
+      "id": 7,
+      "name": "John Doe"
+    },
+    "galleries": [
+      {
+        "id": 8,
+        "full": {},
+        "thumb": {}
+      },
+      {
+        "id": 9,
+        "full": {},
+        "thumb": {}
+      }
+    ],
+    "features": [
+      {
+        "id": 10,
+        "name": "Feature1"
+      },
+      {
+        "id": 11,
+        "name": "Feature2"
+      }
+    ],
+    "related": [
+      {
+        "ID": 12,
+        "post_title": "Related Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 13,
+        "post_title": "Related Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "latest": [
+      {
+        "ID": 14,
+        "post_title": "Latest Product 1",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      },
+      {
+        "ID": 15,
+        "post_title": "Latest Product 2",
+        "image": {
+          "id": 0,
+          "full": {},
+          "thumb": {}
+        }
+      }
+    ],
+    "opening_hour": [
+      {
+        "day": "Monday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      },
+      {
+        "day": "Tuesday",
+        "open": "09:00 AM",
+        "close": "06:00 PM"
+      }
+    ],
+    "tags": [
+      {
+        "id": 16,
+        "name": "Tag3"
+      },
+      {
+        "id": 17,
+        "name": "Tag4"
+      }
+    ],
+    "attachments": [
+      {
+        "id": 18,
+        "url": "https://www.example.com/attachment1.pdf"
+      },
+      {
+        "id": 19,
+        "url": "https://www.example.com/attachment2.pdf"
+      }
+    ],
+    "social_network": {
+      "facebook": "https://www.facebook.com/example",
+      "twitter": "https://www.twitter.com/example"
+    },
+    "booking_use": true,
+    "booking_style": "style1",
+    "booking_price_display": "Starting from 50.00"
+  }
+];
+
+    List<CategoryModel> categories = jsonData
+        .map<CategoryModel>((json) => CategoryModel.fromJson(json))
+        .toList();
+
+    List<ProductModel> list = jsonData
+        .map<ProductModel>((json) => ProductModel.fromJson(json))
+        .toList();
+
     return Scaffold(
       body: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           List<String>? banner;
           List<CategoryModel>? category;
-          List<CategoryModel>? location;
           List<ProductModel>? recent;
 
           if (state is HomeSuccess) {
             banner = state.banner;
             category = state.category;
-            location = state.location;
             recent = state.recent;
           }
 
@@ -304,11 +2626,9 @@ class _HomeState extends State<Home> {
             slivers: <Widget>[
               SliverPersistentHeader(
                 delegate: AppBarHomeSliver(
-                  expandedHeight: MediaQuery.of(context).size.height * 0.3,
-                  banners: banner,
-                  onSearch: _onSearch,
-                  onScan: _onScan,
-                ),
+                    expandedHeight: MediaQuery.of(context).size.height * 0.3,
+                    banners: List<String>.from(homeSwipeData['images']),
+                    onSearch: _onSearch),
                 pinned: true,
               ),
               CupertinoSliverRefreshControl(
@@ -321,10 +2641,9 @@ class _HomeState extends State<Home> {
                     bottom: false,
                     child: Column(
                       children: <Widget>[
-                        _buildCategory(category),
-                        _buildLocation(location),
+                        _buildCategory(categories),
                         const SizedBox(height: 8),
-                        _buildRecent(recent),
+                        _buildRecent(list),
                         const SizedBox(height: 28),
                       ],
                     ),

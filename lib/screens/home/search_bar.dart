@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
+import 'package:hypso/utils/utils.dart';
 
-class HomeSearchBar extends StatelessWidget {
+class HomeSearchBar extends StatefulWidget {
   final VoidCallback onSearch;
-  final VoidCallback onScan;
-  const HomeSearchBar({
-    Key? key,
-    required this.onSearch,
-    required this.onScan,
-  }) : super(key: key);
+
+  const HomeSearchBar({Key? key, required this.onSearch}) : super(key: key);
+
+  @override
+  _HomeSearchBarState createState() => _HomeSearchBarState();
+}
+
+class _HomeSearchBarState extends State<HomeSearchBar> {
+  TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,51 +23,49 @@ class HomeSearchBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: Theme.of(context).dividerColor.withOpacity(
-                    .06,
-                  ),
+              color: Theme.of(context).dividerColor.withOpacity(.06),
               spreadRadius: 2,
               blurRadius: 2,
-              offset: const Offset(
-                0,
-                2,
-              ), // changes position of shadow
+              offset: const Offset(0, 2), // changes position of shadow
             ),
           ],
         ),
-        // padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
-        child: TextButton(
-          onPressed: onSearch,
-          child: IntrinsicHeight(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    Translate.of(context).translate(
-                      'search_location',
-                    ),
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
+        child: Row(
+          children: [
+            Expanded(
+              child: TextFormField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                  hintText: Translate.of(context).translate('search_text'),
+                  hintStyle: Theme.of(context).textTheme.labelLarge,
+                  border: InputBorder.none,
                 ),
-                const VerticalDivider(),
-                InkWell(
-                  onTap: onScan,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    child: Icon(
-                      Icons.qr_code_scanner_outlined,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                ),
-              ],
+                onChanged: (value) {
+                  // You can access the typed value using the _searchController.text
+                  // Do something with the value here
+                },
+              ),
             ),
-          ),
+            Container(
+              height: double.infinity,
+              child: const VerticalDivider(),
+            ),
+            // InkWell for adding a ripple effect on tap
+            InkWell(
+              onTap: widget.onSearch, // Use the provided onSearch callback
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 4,
+                ),
+                child: Icon(
+                  Icons.saved_search,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

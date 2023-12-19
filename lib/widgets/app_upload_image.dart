@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:listar_flutter_pro/blocs/bloc.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/repository/repository.dart';
+import 'package:hypso/blocs/bloc.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/repository/repository.dart';
 
 enum UploadImageType { circle, square }
 

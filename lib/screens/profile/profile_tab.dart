@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
-import 'package:listar_flutter_pro/widgets/widget.dart';
+import 'package:hypso/utils/utils.dart';
+import 'package:hypso/widgets/widget.dart';
 
 class ProfileTab extends SliverPersistentHeaderDelegate {
   final double height;

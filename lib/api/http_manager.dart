@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_svprogresshud/flutter_svprogresshud.dart';
-import 'package:listar_flutter_pro/blocs/bloc.dart';
-import 'package:listar_flutter_pro/configs/config.dart';
-import 'package:listar_flutter_pro/utils/logger.dart';
+import 'package:hypso/blocs/bloc.dart';
+import 'package:hypso/configs/config.dart';
+import 'package:hypso/utils/logger.dart';
 
 class HTTPManager {
   final exceptionCode = ['jwt_auth_bad_iss', 'jwt_auth_invalid_token'];

@@ -1,4 +1,4 @@
-import 'package:listar_flutter_pro/models/model.dart';
+import 'package:hypso/models/model.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class Application {

@@ -1,6 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:listar_flutter_pro/configs/config.dart';
-import 'package:listar_flutter_pro/models/model.dart';
+import 'package:hypso/configs/config.dart';
+import 'package:hypso/models/model.dart';
 
 class NotificationModel {
   final String type;

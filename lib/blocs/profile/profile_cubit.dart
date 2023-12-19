@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:listar_flutter_pro/blocs/bloc.dart';
-import 'package:listar_flutter_pro/configs/config.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/repository/repository.dart';
+import 'package:hypso/blocs/bloc.dart';
+import 'package:hypso/configs/config.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/repository/repository.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(ProfileLoading());

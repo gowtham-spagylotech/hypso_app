@@ -1,4 +1,4 @@
-import 'package:listar_flutter_pro/models/model.dart';
+import 'package:hypso/models/model.dart';
 
 class SlotBookingModel extends BookingStyleModel {
   SlotBookingModel({

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:listar_flutter_pro/screens/home/home_swiper.dart';
-import 'package:listar_flutter_pro/screens/home/search_bar.dart';
+import 'package:hypso/screens/home/home_swiper.dart';
+import 'package:hypso/screens/home/search_bar.dart';
+
 
 class AppBarHomeSliver extends SliverPersistentHeaderDelegate {
   final double expandedHeight;
   final List<String>? banners;
   final VoidCallback onSearch;
-  final VoidCallback onScan;
+
 
   AppBarHomeSliver({
     required this.expandedHeight,
     required this.onSearch,
-    required this.onScan,
     this.banners,
   });
 
@@ -31,8 +31,7 @@ class AppBarHomeSliver extends SliverPersistentHeaderDelegate {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           child: HomeSearchBar(
-            onSearch: onSearch,
-            onScan: onScan,
+            onSearch: onSearch
           ),
         ),
       ],

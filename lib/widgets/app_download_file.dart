@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:listar_flutter_pro/api/api.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
+import 'package:hypso/api/api.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/utils/utils.dart';
 import 'package:open_filex/open_filex.dart';
 
 class AppDownloadFile extends StatefulWidget {

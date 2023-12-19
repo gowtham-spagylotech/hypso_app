@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intro_views_flutter/intro_views_flutter.dart';
-import 'package:listar_flutter_pro/blocs/bloc.dart';
-import 'package:listar_flutter_pro/configs/config.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
+import 'package:hypso/blocs/bloc.dart';
+import 'package:hypso/configs/config.dart';
+import 'package:hypso/utils/utils.dart';
 
 class Intro extends StatefulWidget {
   const Intro({Key? key}) : super(key: key);

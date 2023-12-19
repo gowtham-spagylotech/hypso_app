@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:listar_flutter_pro/configs/config.dart';
-import 'package:listar_flutter_pro/models/model.dart';
-import 'package:listar_flutter_pro/repository/repository.dart';
-import 'package:listar_flutter_pro/utils/utils.dart';
-import 'package:listar_flutter_pro/widgets/widget.dart';
+import 'package:hypso/configs/config.dart';
+import 'package:hypso/models/model.dart';
+import 'package:hypso/repository/repository.dart';
+import 'package:hypso/utils/utils.dart';
+import 'package:hypso/widgets/widget.dart';
 
 enum TimeType { start, end }
 

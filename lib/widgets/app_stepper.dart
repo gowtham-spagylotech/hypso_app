@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:listar_flutter_pro/models/model.dart';
+import 'package:hypso/models/model.dart';
 
 class AppStepper extends StatelessWidget {
   final int active;

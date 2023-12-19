@@ -1,4 +1,4 @@
-package com.huynh.listar_flutter_pro
+package com.huynh.hypso
 
 import io.flutter.embedding.android.FlutterActivity
 
